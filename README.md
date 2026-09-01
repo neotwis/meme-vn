@@ -1,2 +1,2 @@
-# meme-vn
+# CatsMeme
 Trang tổng hợp các Meme Tiếng Việt!
