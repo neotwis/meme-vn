@@ -1,0 +1,549 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CatsMeme — Kho Meme Việt</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 10%, #302060 0, transparent 30%),
+        radial-gradient(circle at 85% 80%, #123e43 0, transparent 30%),
+        #08090d;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      width: 100%;
+      max-width: 1150px;
+      margin: auto;
+      padding: 24px 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #9297a3;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1000px;
+      margin: auto;
+      padding: 110px 25px 120px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      font-size: 13px;
+      color: #c4b5fd;
+
+      background: rgba(124,58,237,.12);
+      border: 1px solid rgba(139,92,246,.2);
+
+      margin-bottom: 25px;
+    }
+
+    .badge span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      box-shadow: 0 0 12px #8b5cf6;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: .95;
+      letter-spacing: -5px;
+      font-weight: 900;
+
+      background: linear-gradient(
+        135deg,
+        #fff,
+        #c4b5fd 55%,
+        #818cf8
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 28px auto 0;
+
+      color: #9ca3af;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 14px;
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      border: 1px solid rgba(255,255,255,.1);
+
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      box-shadow: 0 15px 40px rgba(99,102,241,.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* PREVIEW */
+
+    .preview {
+      max-width: 1000px;
+      margin: -30px auto 100px;
+      padding: 15px 25px;
+    }
+
+    .preview-box {
+      height: 430px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.08),
+          rgba(255,255,255,.025)
+        );
+
+      border: 1px solid rgba(255,255,255,.1);
+
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.05);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-content {
+      text-align: center;
+    }
+
+    .preview-emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .preview-content h2 {
+      font-size: 27px;
+      margin-bottom: 10px;
+    }
+
+    .preview-content p {
+      color: #858b97;
+      font-size: 14px;
+    }
+
+    /* FEATURES */
+
+    .section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 0 25px 110px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading h2 {
+      font-size: 38px;
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      color: #777d89;
+      margin-top: 10px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .feature {
+      padding: 28px;
+
+      border-radius: 20px;
+
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+
+      transition: .25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(139,92,246,.3);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: rgba(124,58,237,.15);
+
+      font-size: 21px;
+
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: #858b97;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+
+    .cta {
+      max-width: 1000px;
+      margin: 0 auto 100px;
+      padding: 70px 25px;
+
+      text-align: center;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(124,58,237,.16),
+          rgba(79,70,229,.07)
+        );
+
+      border: 1px solid rgba(139,92,246,.15);
+    }
+
+    .cta h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #9297a3;
+      margin-bottom: 28px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+
+      padding: 30px 25px;
+
+      text-align: center;
+
+      color: #626773;
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 700px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 80px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-box {
+        height: 330px;
+      }
+
+      .cta h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="brand">
+      <div class="brand-icon">😂</div>
+      CatsMeme
+    </div>
+
+    <div class="nav-links">
+      <a href="#features">Tính năng</a>
+      <a href="#about">Giới thiệu</a>
+      <a href="#community">Cộng đồng</a>
+    </div>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="badge">
+      <span></span>
+      Kho meme dành cho người Việt
+    </div>
+
+    <h1>
+      Meme của bạn.<br>
+      Niềm vui của mọi người.
+    </h1>
+
+    <p>
+      Một nơi để khám phá, lưu trữ và chia sẻ những
+      meme hài hước nhất trên Internet.
+      Đơn giản, nhanh chóng và hoàn toàn miễn phí.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">
+        Khám phá Meme →
+      </a>
+
+      <a href="#features" class="btn btn-secondary">
+        Tìm hiểu thêm
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- PREVIEW -->
+
+  <section class="preview">
+
+    <div class="preview-box">
+
+      <div class="preview-content">
+
+        <div class="preview-emoji">
+          🤣
+        </div>
+
+        <h2>Hàng nghìn meme đang chờ bạn</h2>
+
+        <p>
+          Meme mới sẽ được cập nhật thường xuyên.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section class="section" id="features">
+
+    <div class="section-heading">
+
+      <h2>Mọi thứ bạn cần</h2>
+
+      <p>
+        Được xây dựng để việc tìm meme trở nên đơn giản hơn.
+      </p>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+
+        <div class="feature-icon">😂</div>
+
+        <h3>Kho Meme khổng lồ</h3>
+
+        <p>
+          Khám phá hàng loạt meme từ những trend
+          mới nhất đến những meme huyền thoại.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">⚡</div>
+
+        <h3>Nhanh & đơn giản</h3>
+
+        <p>
+          Giao diện nhẹ, tốc độ tải nhanh và
+          không có những thứ không cần thiết.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">🚀</div>
+
+        <h3>Chia sẻ dễ dàng</h3>
+
+        <p>
+          Tìm thấy meme hay? Chia sẻ ngay với
+          bạn bè chỉ bằng một cú click.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta" id="community">
+
+    <h2>Sẵn sàng cười chưa?</h2>
+
+    <p>
+      Tham gia CatsMeme và khám phá thế giới meme.
+    </p>
+
+    <a href="#" class="btn btn-primary">
+      Bắt đầu khám phá →
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 MemeHub. Made for fun.
+
+  </footer>
+
+</body>
+</html>
+```
